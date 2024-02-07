@@ -32,8 +32,8 @@ class CastDiscoveryService {
         final host = event.service?.toJson()['service.ip'] ?? event.service?.toJson()['service.host'];
 
         String name = [
-          event.service?.attributes?['md'],
-          event.service?.attributes?['fn'],
+          event.service?.attributes['md'],
+          event.service?.attributes['fn'],
         ].whereType<String>().join(' - ');
         if (name.isEmpty) {
           name = event.service!.name;
@@ -49,7 +49,7 @@ class CastDiscoveryService {
             name: name,
             port: port,
             host: host,
-            extras: event.service!.attributes ?? {},
+            extras: event.service!.attributes,
           ),
         );
       }
